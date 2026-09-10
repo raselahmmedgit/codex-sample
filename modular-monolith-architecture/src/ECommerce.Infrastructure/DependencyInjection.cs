@@ -1,7 +1,9 @@
+using ECommerce.Application.Common.Interfaces;
 using ECommerce.Application.Common.Logging;
 using ECommerce.Infrastructure.Configuration;
 using ECommerce.Infrastructure.Logging;
 using ECommerce.Infrastructure.Persistence;
+using ECommerce.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,6 +34,7 @@ public static class DependencyInjection
         });
 
         services.AddScoped(typeof(IAppLogger<>), typeof(AppLogger<>));
+        services.AddScoped<IProductRepository, ProductRepository>();
         return services;
     }
 }
