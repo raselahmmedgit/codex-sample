@@ -1,4 +1,5 @@
 using ECommerce.API.Middleware;
+using ECommerce.Application;
 using ECommerce.Infrastructure;
 using Microsoft.OpenApi.Models;
 using Serilog;
@@ -14,6 +15,7 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 
 builder.Host.UseSerilog();
+builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
