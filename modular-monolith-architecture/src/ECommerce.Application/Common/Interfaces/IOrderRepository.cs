@@ -8,4 +8,5 @@ public interface IOrderRepository
     Task<IReadOnlyCollection<Order>> ListByUserAsync(Guid userId, CancellationToken cancellationToken = default);
     Task AddAsync(Order order, CancellationToken cancellationToken = default);
     Task SaveChangesAsync(CancellationToken cancellationToken = default);
+    Task<bool> HasDeliveredPurchaseAsync(Guid userId, Guid productId, CancellationToken cancellationToken = default);
 }

@@ -11,4 +11,5 @@ public sealed class OrderRepository(ApplicationDbContext dbContext) : IOrderRepo
     public async Task<IReadOnlyCollection<Order>> ListByUserAsync(Guid userId, CancellationToken cancellationToken = default) => await dbContext.Orders.AsNoTracking().Include(x => x.Items).Where(x => x.UserId == userId).OrderByDescending(x => x.CreatedAtUtc).ToArrayAsync(cancellationToken);
     public Task AddAsync(Order order, CancellationToken cancellationToken = default) => dbContext.Orders.AddAsync(order, cancellationToken).AsTask();
     public Task SaveChangesAsync(CancellationToken cancellationToken = default) => dbContext.SaveChangesAsync(cancellationToken);
+    public Task<bool> HasDeliveredPurchaseAsync(Guid userId, Guid productId, CancellationToken cancellationToken = default) => dbContext.Orders.AnyAsync(x => x.UserId == userId && x.Status == ECommerce.Domain.Enums.OrderStatus.Delivered && x.Items.Any(i => i.ProductId == productId), cancellationToken);
 }

@@ -6,6 +6,7 @@ using ECommerce.Application.Features.Coupons;
 using ECommerce.Application.Features.Orders;
 using ECommerce.Application.Features.Payments;
 using ECommerce.Application.Features.Inventory;
+using ECommerce.Application.Features.Reviews;
 using ECommerce.Application.Features.Products.Services;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -23,6 +24,7 @@ public static class DependencyInjection
         services.AddScoped<OrderService>();
         services.AddScoped<PaymentService>();
         services.AddScoped<InventoryService>();
+        services.AddScoped<ReviewService>();
         return services;
     }
 }
