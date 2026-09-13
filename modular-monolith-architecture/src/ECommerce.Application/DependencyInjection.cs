@@ -2,6 +2,7 @@ using ECommerce.Application.Common.Interfaces;
 using ECommerce.Application.Features.Catalog;
 using ECommerce.Application.Features.Cart;
 using ECommerce.Application.Features.Customers;
+using ECommerce.Application.Features.Coupons;
 using ECommerce.Application.Features.Products.Services;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,6 +16,7 @@ public static class DependencyInjection
         services.AddScoped<ICatalogService, CatalogService>();
         services.AddScoped<CartService>();
         services.AddScoped<CustomerService>();
+        services.AddScoped<CouponService>();
         return services;
     }
 }

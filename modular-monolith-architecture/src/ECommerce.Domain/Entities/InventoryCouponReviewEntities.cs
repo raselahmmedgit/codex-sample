@@ -78,6 +78,12 @@ public sealed class Coupon : AuditableEntity
     public int? UsageLimit { get; private set; }
     public bool IsActive { get; private set; } = true;
     public bool IsValid(DateTime utcNow, decimal orderAmount) => IsActive && utcNow >= StartsAtUtc && utcNow <= ExpiresAtUtc && orderAmount >= MinimumOrderAmount;
+    public decimal CalculateDiscount(decimal orderAmount)
+    {
+        if (!IsValid(DateTime.UtcNow, orderAmount)) return 0m;
+        var discount = Type == CouponType.Percentage ? orderAmount * Value / 100m : Value;
+        return Math.Min(discount, MaximumDiscount ?? discount);
+    }
     public void Deactivate() => IsActive = false;
 }
 
