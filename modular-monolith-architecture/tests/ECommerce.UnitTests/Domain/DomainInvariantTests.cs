@@ -52,4 +52,49 @@ public sealed class DomainInvariantTests
         var action = () => new Review(Guid.NewGuid(), Guid.NewGuid(), 6, "Invalid rating");
         Assert.Throws<DomainException>(action);
     }
+
+    [Fact]
+    public void Order_ShouldCalculateSubtotalDiscountAndTotal()
+    {
+        var order = new Order(Guid.NewGuid(), "ORD-002");
+        order.AddItem(Guid.NewGuid(), "Keyboard", 2, 50m);
+        order.AddItem(Guid.NewGuid(), "Mouse", 1, 25m);
+        order.ApplyDiscount(20m);
+
+        Assert.Equal(125m, order.Subtotal);
+        Assert.Equal(20m, order.Discount);
+        Assert.Equal(105m, order.Total);
+    }
+
+    [Fact]
+    public void Coupon_ShouldNormalizeCodeAndCalculatePercentageDiscount()
+    {
+        var coupon = new Coupon(" save10 ", CouponType.Percentage, 10m,
+            DateTime.UtcNow.AddMinutes(-1), DateTime.UtcNow.AddMinutes(10));
+
+        Assert.Equal("SAVE10", coupon.Code);
+        Assert.Equal(10m, coupon.CalculateDiscount(100m));
+    }
+
+    [Fact]
+    public void DeactivatedCoupon_ShouldNotProvideDiscount()
+    {
+        var coupon = new Coupon("SAVE10", CouponType.FixedAmount, 10m,
+            DateTime.UtcNow.AddMinutes(-1), DateTime.UtcNow.AddMinutes(10));
+        coupon.Deactivate();
+
+        Assert.False(coupon.IsValid(DateTime.UtcNow, 100m));
+        Assert.Equal(0m, coupon.CalculateDiscount(100m));
+    }
+
+    [Fact]
+    public void Inventory_ShouldReleaseReservedQuantity()
+    {
+        var inventory = new Inventory(Guid.NewGuid(), 10);
+        inventory.Reserve(4);
+        inventory.Release(2);
+
+        Assert.Equal(2, inventory.ReservedQuantity);
+        Assert.Equal(8, inventory.AvailableQuantity);
+    }
 }
