@@ -153,4 +153,10 @@ public sealed class Address : AuditableEntity
     public string Country { get; private set; } = string.Empty;
     public bool IsDefault { get; private set; }
     public void MarkAsDefault() => IsDefault = true;
+    public void Update(string line1, string? line2, string city, string? state, string? postalCode, string country)
+    {
+        if (string.IsNullOrWhiteSpace(line1) || string.IsNullOrWhiteSpace(city) || string.IsNullOrWhiteSpace(country))
+            throw new DomainException("Address line, city, and country are required.");
+        Line1 = line1.Trim(); Line2 = line2?.Trim(); City = city.Trim(); State = state?.Trim(); PostalCode = postalCode?.Trim(); Country = country.Trim(); MarkUpdated();
+    }
 }
