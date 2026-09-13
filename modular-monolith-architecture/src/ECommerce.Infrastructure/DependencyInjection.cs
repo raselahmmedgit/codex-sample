@@ -7,6 +7,7 @@ using ECommerce.Infrastructure.Configuration;
 using ECommerce.Infrastructure.Logging;
 using ECommerce.Infrastructure.Persistence;
 using ECommerce.Infrastructure.Repositories;
+using ECommerce.Infrastructure.Payments;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -60,6 +61,8 @@ public static class DependencyInjection
         services.AddScoped<IAddressRepository, AddressRepository>();
         services.AddScoped<ICouponRepository, CouponRepository>();
         services.AddScoped<IOrderRepository, OrderRepository>();
+        services.AddScoped<IPaymentRepository, PaymentRepository>();
+        services.AddScoped<IPaymentService, MockPaymentService>();
         return services;
     }
 }
