@@ -59,6 +59,7 @@ public static class DependencyInjection
         services.AddScoped<IWishlistRepository, WishlistRepository>();
         services.AddScoped<IAddressRepository, AddressRepository>();
         services.AddScoped<ICouponRepository, CouponRepository>();
+        services.AddScoped<IOrderRepository, OrderRepository>();
         return services;
     }
 }
