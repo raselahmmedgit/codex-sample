@@ -83,6 +83,11 @@ public sealed class Category : AuditableEntity
     public int SortOrder { get; private set; }
     public void Deactivate() => IsActive = false;
     public void Activate() => IsActive = true;
+    public void Rename(string name)
+    {
+        if (string.IsNullOrWhiteSpace(name)) throw new DomainException("Category name is required.");
+        Name = name.Trim(); MarkUpdated();
+    }
 }
 
 public sealed class Brand : AuditableEntity
@@ -98,6 +103,11 @@ public sealed class Brand : AuditableEntity
     public bool IsActive { get; private set; } = true;
     public void Deactivate() => IsActive = false;
     public void Activate() => IsActive = true;
+    public void Rename(string name)
+    {
+        if (string.IsNullOrWhiteSpace(name)) throw new DomainException("Brand name is required.");
+        Name = name.Trim(); MarkUpdated();
+    }
 }
 
 public sealed class ProductCategory : BaseEntity

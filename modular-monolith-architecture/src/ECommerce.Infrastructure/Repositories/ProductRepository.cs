@@ -33,4 +33,5 @@ public sealed class ProductRepository(ApplicationDbContext dbContext) : IProduct
 
     public void Update(Product product) => dbContext.Products.Update(product);
     public void Remove(Product product) => dbContext.Products.Remove(product);
+    public Task SaveChangesAsync(CancellationToken cancellationToken = default) => dbContext.SaveChangesAsync(cancellationToken);
 }
