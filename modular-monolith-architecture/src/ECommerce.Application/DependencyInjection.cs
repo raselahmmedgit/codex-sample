@@ -1,5 +1,6 @@
 using ECommerce.Application.Common.Interfaces;
 using ECommerce.Application.Features.Catalog;
+using ECommerce.Application.Features.Cart;
 using ECommerce.Application.Features.Products.Services;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,6 +12,7 @@ public static class DependencyInjection
     {
         services.AddScoped<IProductService, ProductService>();
         services.AddScoped<ICatalogService, CatalogService>();
+        services.AddScoped<CartService>();
         return services;
     }
 }

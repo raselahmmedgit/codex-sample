@@ -66,6 +66,20 @@ public sealed class Cart : AuditableEntity
         else item.ChangeQuantity(item.Quantity + quantity, unitPrice);
         MarkUpdated();
     }
+
+    public void UpdateItem(Guid itemId, int quantity, decimal serverSidePrice)
+    {
+        var item = _items.SingleOrDefault(x => x.Id == itemId) ?? throw new DomainException("Cart item was not found.");
+        item.ChangeQuantity(quantity, serverSidePrice); MarkUpdated();
+    }
+
+    public void RemoveItem(Guid itemId)
+    {
+        var item = _items.SingleOrDefault(x => x.Id == itemId) ?? throw new DomainException("Cart item was not found.");
+        _items.Remove(item); MarkUpdated();
+    }
+
+    public void Clear() { _items.Clear(); MarkUpdated(); }
 }
 
 public sealed class CartItem : BaseEntity
@@ -101,6 +115,12 @@ public sealed class Wishlist : AuditableEntity
     public void Add(Guid productId)
     {
         if (_items.All(x => x.ProductId != productId)) _items.Add(new WishlistItem(productId));
+    }
+
+    public void Remove(Guid itemId)
+    {
+        var item = _items.SingleOrDefault(x => x.Id == itemId) ?? throw new DomainException("Wishlist item was not found.");
+        _items.Remove(item); MarkUpdated();
     }
 }
 
