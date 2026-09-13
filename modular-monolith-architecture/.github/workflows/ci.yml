@@ -1,0 +1,49 @@
+name: ecommerce-ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: modular-monolith-architecture
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.x
+      - run: dotnet restore ECommerce.sln
+      - run: dotnet build ECommerce.sln --no-restore --configuration Release
+      - run: dotnet test ECommerce.sln --no-build --configuration Release --collect:"XPlat Code Coverage"
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: modular-monolith-architecture/client/ecommerce-angular
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: modular-monolith-architecture/client/ecommerce-angular/package-lock.json
+      - run: npm ci
+      - run: npm run build
+
+  configuration:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: modular-monolith-architecture
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Postman JSON
+        run: node -e "JSON.parse(require('fs').readFileSync('postman/ecommerce.postman_collection.json')); JSON.parse(require('fs').readFileSync('postman/ecommerce.postman_environment.json'));"
+      - name: Validate Docker Compose
+        run: docker compose config --quiet
