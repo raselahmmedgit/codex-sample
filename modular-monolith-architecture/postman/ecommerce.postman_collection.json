@@ -1,0 +1,19 @@
+{
+  "info": { "name": "ECommerce API", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json" },
+  "variable": [{ "key": "baseUrl", "value": "https://localhost:7001" }],
+  "item": [
+    { "name": "Health", "request": { "method": "GET", "url": "{{baseUrl}}/health" } },
+    { "name": "Register", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"email\": \"customer@example.com\",\n  \"password\": \"Password1\",\n  \"displayName\": \"Customer\"\n}" }, "url": "{{baseUrl}}/api/auth/register" } },
+    { "name": "Login", "event": [{ "listen": "test", "script": { "exec": ["const json = pm.response.json();", "if (json.data) { pm.environment.set('accessToken', json.data.accessToken); pm.environment.set('refreshToken', json.data.refreshToken); }"] } }], "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"email\": \"customer@example.com\",\n  \"password\": \"Password1\"\n}" }, "url": "{{baseUrl}}/api/auth/login" } },
+    { "name": "Me", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }], "url": "{{baseUrl}}/api/auth/me" } },
+    { "name": "Refresh Token", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"refreshToken\": \"{{refreshToken}}\"\n}" }, "url": "{{baseUrl}}/api/auth/refresh-token" } },
+    { "name": "Products", "request": { "method": "GET", "url": "{{baseUrl}}/api/products?pageNumber=1&pageSize=20" } },
+    { "name": "Categories", "request": { "method": "GET", "url": "{{baseUrl}}/api/categories" } },
+    { "name": "Brands", "request": { "method": "GET", "url": "{{baseUrl}}/api/brands" } },
+    { "name": "Cart", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }], "url": "{{baseUrl}}/api/cart" } },
+    { "name": "Wishlist", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }], "url": "{{baseUrl}}/api/wishlist" } },
+    { "name": "Orders", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }], "url": "{{baseUrl}}/api/orders" } },
+    { "name": "Addresses", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }], "url": "{{baseUrl}}/api/customers/addresses" } },
+    { "name": "Validate Coupon", "request": { "method": "POST", "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }, { "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"code\": \"WELCOME10\",\n  \"orderAmount\": 100\n}" }, "url": "{{baseUrl}}/api/coupons/validate" } }
+  ]
+}
