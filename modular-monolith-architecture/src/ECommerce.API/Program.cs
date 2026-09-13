@@ -15,11 +15,14 @@ Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(builder.Configuration)
     .Enrich.FromLogContext()
     .Enrich.WithProperty("ApplicationName", "ECommerce.API")
+    .Enrich.WithProperty("MachineName", Environment.MachineName)
+    .Enrich.WithThreadId()
     .WriteTo.Console()
     .WriteTo.File("logs/application/log-.txt", rollingInterval: RollingInterval.Day, retainedFileCountLimit: 14)
     .CreateLogger();
 
 builder.Host.UseSerilog();
+builder.Services.AddOptions<SerilogSettings>().BindConfiguration(SerilogSettings.SectionName).ValidateOnStart();
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddControllers();
@@ -62,6 +65,7 @@ var app = builder.Build();
 await DatabaseInitializer.InitializeAsync(app.Services, app.Configuration, app.Environment.IsDevelopment());
 app.UseMiddleware<CorrelationIdMiddleware>();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
+app.UseMiddleware<RequestPerformanceMiddleware>();
 app.UseSerilogRequestLogging();
 
 if (app.Environment.IsDevelopment())

@@ -1,4 +1,5 @@
 namespace ECommerce.API.Middleware;
+using Serilog.Context;
 
 public sealed class CorrelationIdMiddleware(RequestDelegate next)
 {
@@ -10,6 +11,9 @@ public sealed class CorrelationIdMiddleware(RequestDelegate next)
         if (string.IsNullOrWhiteSpace(correlationId)) correlationId = Guid.NewGuid().ToString("N");
         context.TraceIdentifier = correlationId;
         context.Response.Headers[HeaderName] = correlationId;
-        await next(context);
+        using (LogContext.PushProperty("CorrelationId", correlationId))
+        {
+            await next(context);
+        }
     }
 }
