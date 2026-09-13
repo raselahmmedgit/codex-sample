@@ -1,0 +1,9 @@
+**/bin/
+**/obj/
+client/ecommerce-angular/node_modules/
+client/ecommerce-angular/dist/
+.git/
+.vs/
+logs/
+*.user
+*.suo
