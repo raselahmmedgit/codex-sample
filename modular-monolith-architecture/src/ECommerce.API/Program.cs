@@ -1,6 +1,7 @@
 using ECommerce.API.Middleware;
 using ECommerce.Application;
 using ECommerce.Infrastructure;
+using ECommerce.Infrastructure.Persistence;
 using Microsoft.OpenApi.Models;
 using Serilog;
 
@@ -34,6 +35,7 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddHealthChecks();
 
 var app = builder.Build();
+await DatabaseInitializer.InitializeAsync(app.Services, app.Configuration, app.Environment.IsDevelopment());
 app.UseMiddleware<CorrelationIdMiddleware>();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseSerilogRequestLogging();
