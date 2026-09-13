@@ -63,6 +63,7 @@ public static class DependencyInjection
         services.AddScoped<IOrderRepository, OrderRepository>();
         services.AddScoped<IPaymentRepository, PaymentRepository>();
         services.AddScoped<IPaymentService, MockPaymentService>();
+        services.AddScoped<IInventoryRepository, InventoryRepository>();
         return services;
     }
 }
