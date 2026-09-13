@@ -1,19 +1,27 @@
 using ECommerce.Domain.Common;
 using ECommerce.Domain.Enums;
+using Microsoft.AspNetCore.Identity;
 
 namespace ECommerce.Domain.Entities;
 
-public sealed class ApplicationUser : AuditableEntity
+public sealed class ApplicationUser : IdentityUser<Guid>
 {
-    private ApplicationUser() { }
+    public ApplicationUser() => Id = Guid.NewGuid();
     public ApplicationUser(string email)
     {
         if (string.IsNullOrWhiteSpace(email)) throw new DomainException("Email is required.");
+        Id = Guid.NewGuid();
         Email = email.Trim().ToLowerInvariant();
+        UserName = Email;
     }
 
-    public string Email { get; private set; } = string.Empty;
-    public string? DisplayName { get; private set; }
+    public string? DisplayName { get; set; }
+}
+
+public sealed class ApplicationRole : IdentityRole<Guid>
+{
+    public ApplicationRole() => Id = Guid.NewGuid();
+    public ApplicationRole(string name) : base(name) => Id = Guid.NewGuid();
 }
 
 public sealed class RefreshToken : BaseEntity

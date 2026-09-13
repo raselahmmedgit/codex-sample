@@ -1,6 +1,7 @@
 using ECommerce.Domain.Entities;
 using ECommerce.Infrastructure.Configuration;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,7 +18,21 @@ public static class DatabaseInitializer
 
         var dbContext = services.GetRequiredService<ApplicationDbContext>();
         if (settings.ApplyMigrationsOnStartup) await dbContext.Database.MigrateAsync(cancellationToken);
-        if (settings.SeedDevelopmentData) await SeedDevelopmentDataAsync(dbContext, cancellationToken);
+        if (settings.SeedDevelopmentData)
+        {
+            await SeedRolesAsync(services, cancellationToken);
+            await SeedDevelopmentDataAsync(dbContext, cancellationToken);
+        }
+    }
+
+    private static async Task SeedRolesAsync(IServiceProvider services, CancellationToken cancellationToken)
+    {
+        var roleManager = services.GetRequiredService<RoleManager<ApplicationRole>>();
+        foreach (var roleName in new[] { "Admin", "Customer", "Manager", "Seller" })
+        {
+            if (!await roleManager.RoleExistsAsync(roleName))
+                await roleManager.CreateAsync(new ApplicationRole(roleName));
+        }
     }
 
     private static async Task SeedDevelopmentDataAsync(ApplicationDbContext dbContext, CancellationToken cancellationToken)
