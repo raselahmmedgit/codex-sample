@@ -3,10 +3,11 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CatalogService } from '../catalog.service';
 import { Product } from '../catalog.models';
+import { ReviewFormComponent } from '../../reviews/review-form.component';
 
 @Component({
   selector: 'app-product-detail',
-  imports: [CurrencyPipe, RouterLink],
+  imports: [CurrencyPipe, RouterLink, ReviewFormComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (product(); as item) {
@@ -22,6 +23,7 @@ import { Product } from '../catalog.models';
           <p class="small text-secondary mt-3">Cart actions will be enabled in the next catalog phase.</p>
         </div>
       </section>
+      <div class="mt-5"><app-review-form [productId]="item.id" /></div>
     } @else if (errorMessage()) {
       <div class="alert alert-warning" role="alert">{{ errorMessage() }}</div>
       <a routerLink="/products" class="btn btn-outline-primary">Back to products</a>
