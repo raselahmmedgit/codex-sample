@@ -6,6 +6,8 @@ import { LoginComponent } from './features/auth/login/login.component';
 import { RegisterComponent } from './features/auth/register/register.component';
 import { ProductListComponent } from './features/catalog/pages/product-list.component';
 import { ProductDetailComponent } from './features/catalog/pages/product-detail.component';
+import { CartComponent } from './features/commerce/cart/cart.component';
+import { WishlistComponent } from './features/commerce/wishlist/wishlist.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, title: 'Home | Elevate Commerce' },
@@ -13,8 +15,8 @@ export const routes: Routes = [
   { path: 'products/:id', component: ProductDetailComponent, title: 'Product details | Elevate Commerce' },
   { path: 'login', component: LoginComponent, title: 'Sign in | Elevate Commerce' },
   { path: 'register', component: RegisterComponent, title: 'Create account | Elevate Commerce' },
-  { path: 'cart', component: PlaceholderComponent, canActivate: [authGuard], title: 'Cart' },
-  { path: 'wishlist', component: PlaceholderComponent, canActivate: [authGuard], title: 'Wishlist' },
+  { path: 'cart', component: CartComponent, canActivate: [authGuard], title: 'Cart | Elevate Commerce' },
+  { path: 'wishlist', component: WishlistComponent, canActivate: [authGuard], title: 'Wishlist | Elevate Commerce' },
   { path: 'orders', component: PlaceholderComponent, canActivate: [authGuard], title: 'Orders' },
   { path: 'profile', component: PlaceholderComponent, canActivate: [authGuard], title: 'Profile' },
   { path: '**', redirectTo: '' }
