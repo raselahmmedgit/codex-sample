@@ -12,6 +12,8 @@ import { ProfileComponent } from './features/customer/profile/profile.component'
 import { CheckoutComponent } from './features/checkout/checkout.component';
 import { OrdersListComponent } from './features/orders/orders-list.component';
 import { OrderDetailComponent } from './features/orders/order-detail.component';
+import { adminGuard } from './core/guards/admin.guard';
+import { AdminComponent } from './features/admin/admin.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, title: 'Home | Elevate Commerce' },
@@ -24,6 +26,7 @@ export const routes: Routes = [
   { path: 'wishlist', component: WishlistComponent, canActivate: [authGuard], title: 'Wishlist | Elevate Commerce' },
   { path: 'orders', component: OrdersListComponent, canActivate: [authGuard], title: 'Orders | Elevate Commerce' },
   { path: 'orders/:id', component: OrderDetailComponent, canActivate: [authGuard], title: 'Order details | Elevate Commerce' },
+  { path: 'admin', component: AdminComponent, canActivate: [adminGuard], title: 'Admin | Elevate Commerce' },
   { path: 'profile', component: ProfileComponent, canActivate: [authGuard], title: 'Profile | Elevate Commerce' },
   { path: '**', redirectTo: '' }
 ];

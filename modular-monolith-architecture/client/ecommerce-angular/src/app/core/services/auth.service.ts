@@ -36,6 +36,17 @@ export class AuthService {
   getAccessToken(): string | null { return localStorage.getItem(this.accessTokenKey); }
   getRefreshToken(): string | null { return localStorage.getItem(this.refreshTokenKey); }
 
+  hasAnyRole(roles: string[]): boolean {
+    const token = this.getAccessToken();
+    if (!token) return false;
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1])) as Record<string, string | string[]>;
+      const claim = payload['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] ?? payload['role'];
+      const tokenRoles = Array.isArray(claim) ? claim : claim ? [claim] : [];
+      return roles.some((role) => tokenRoles.includes(role));
+    } catch { return false; }
+  }
+
   me(): Observable<CurrentUser> {
     return this.http.get<CurrentUser>('/api/auth/me');
   }
