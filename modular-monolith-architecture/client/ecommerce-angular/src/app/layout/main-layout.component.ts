@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '../core/services/auth.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -15,7 +16,12 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
         <div class="d-flex align-items-center gap-2 gap-md-4">
           <a class="nav-link" routerLink="/products" routerLinkActive="active">Products</a>
           <a class="nav-link" routerLink="/cart" routerLinkActive="active">Cart</a>
-          <a class="btn btn-primary btn-sm px-3" routerLink="/login">Sign in</a>
+          @if (auth.isAuthenticated()) {
+            <a class="nav-link" routerLink="/orders" routerLinkActive="active">Orders</a>
+            <button class="btn btn-outline-secondary btn-sm px-3" type="button" (click)="signOut()">Sign out</button>
+          } @else {
+            <a class="btn btn-primary btn-sm px-3" routerLink="/login">Sign in</a>
+          }
         </div>
       </nav>
     </header>
@@ -40,4 +46,10 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     .app-content { min-height: calc(100vh - 145px); }
   `
 })
-export class MainLayoutComponent {}
+export class MainLayoutComponent {
+  readonly auth = inject(AuthService);
+
+  signOut(): void {
+    this.auth.logout().subscribe({ error: () => this.auth.clearSession() });
+  }
+}

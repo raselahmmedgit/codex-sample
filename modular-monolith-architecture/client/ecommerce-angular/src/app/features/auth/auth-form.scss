@@ -1,0 +1,7 @@
+.auth-page { min-height: calc(100vh - 220px); display: grid; place-items: center; }
+.auth-card { width: min(100%, 480px); border: 0; box-shadow: 0 1rem 3rem rgba(23, 32, 51, .08); }
+.auth-brand { display: grid; width: 3rem; height: 3rem; place-items: center; border-radius: 1rem; background: var(--bs-primary); color: #fff; font-size: 1.35rem; font-weight: 700; }
+.form-label { color: #354052; font-size: .9rem; font-weight: 600; }
+.form-control { padding: .75rem .9rem; border-color: #dce2ed; }
+.form-control:focus { border-color: var(--bs-primary); box-shadow: 0 0 0 .2rem rgba(var(--bs-primary-rgb), .12); }
+.form-error { color: #b42318; font-size: .82rem; }
