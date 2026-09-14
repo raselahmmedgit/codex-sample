@@ -11,6 +11,8 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent, title: 'Sign in | Elevate Commerce' },
   { path: 'register', component: RegisterComponent, title: 'Create account | Elevate Commerce' },
   { path: 'cart', component: PlaceholderComponent, canActivate: [authGuard], title: 'Cart' },
+  { path: 'wishlist', component: PlaceholderComponent, canActivate: [authGuard], title: 'Wishlist' },
   { path: 'orders', component: PlaceholderComponent, canActivate: [authGuard], title: 'Orders' },
+  { path: 'profile', component: PlaceholderComponent, canActivate: [authGuard], title: 'Profile' },
   { path: '**', redirectTo: '' }
 ];
