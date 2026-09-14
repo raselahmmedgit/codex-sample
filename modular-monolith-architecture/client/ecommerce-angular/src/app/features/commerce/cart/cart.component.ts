@@ -46,8 +46,7 @@ import { CommerceActionsService } from '../commerce-actions.service';
             <div class="d-flex justify-content-between text-secondary mb-3"><span>Shipping</span><span>Calculated at checkout</span></div>
             <hr />
             <div class="d-flex justify-content-between fw-bold mb-4"><span>Total</span><span>{{ cart()!.total | currency }}</span></div>
-            <button class="btn btn-primary w-100" type="button" disabled>Continue to checkout</button>
-            <p class="small text-secondary text-center mt-3 mb-0">Checkout will be enabled in the next phase.</p>
+            <a class="btn btn-primary w-100" routerLink="/checkout">Continue to checkout</a>
           </div>
         </aside>
       </div>
