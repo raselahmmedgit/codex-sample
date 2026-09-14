@@ -8,6 +8,7 @@ import { ProductListComponent } from './features/catalog/pages/product-list.comp
 import { ProductDetailComponent } from './features/catalog/pages/product-detail.component';
 import { CartComponent } from './features/commerce/cart/cart.component';
 import { WishlistComponent } from './features/commerce/wishlist/wishlist.component';
+import { ProfileComponent } from './features/customer/profile/profile.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, title: 'Home | Elevate Commerce' },
@@ -18,6 +19,6 @@ export const routes: Routes = [
   { path: 'cart', component: CartComponent, canActivate: [authGuard], title: 'Cart | Elevate Commerce' },
   { path: 'wishlist', component: WishlistComponent, canActivate: [authGuard], title: 'Wishlist | Elevate Commerce' },
   { path: 'orders', component: PlaceholderComponent, canActivate: [authGuard], title: 'Orders' },
-  { path: 'profile', component: PlaceholderComponent, canActivate: [authGuard], title: 'Profile' },
+  { path: 'profile', component: ProfileComponent, canActivate: [authGuard], title: 'Profile | Elevate Commerce' },
   { path: '**', redirectTo: '' }
 ];
