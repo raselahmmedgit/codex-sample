@@ -17,4 +17,8 @@ export class UiStateService {
   setError(message: string | null): void {
     this.errorMessage.set(message);
   }
+
+  clearError(): void {
+    this.errorMessage.set(null);
+  }
 }

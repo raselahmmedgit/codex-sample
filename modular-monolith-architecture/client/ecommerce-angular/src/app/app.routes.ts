@@ -14,6 +14,7 @@ import { OrdersListComponent } from './features/orders/orders-list.component';
 import { OrderDetailComponent } from './features/orders/order-detail.component';
 import { adminGuard } from './core/guards/admin.guard';
 import { AdminComponent } from './features/admin/admin.component';
+import { NotFoundComponent } from './shared/pages/not-found.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, title: 'Home | Elevate Commerce' },
@@ -28,5 +29,5 @@ export const routes: Routes = [
   { path: 'orders/:id', component: OrderDetailComponent, canActivate: [authGuard], title: 'Order details | Elevate Commerce' },
   { path: 'admin', component: AdminComponent, canActivate: [adminGuard], title: 'Admin | Elevate Commerce' },
   { path: 'profile', component: ProfileComponent, canActivate: [authGuard], title: 'Profile | Elevate Commerce' },
-  { path: '**', redirectTo: '' }
+  { path: '**', component: NotFoundComponent, title: 'Page not found | Elevate Commerce' }
 ];

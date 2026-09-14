@@ -18,3 +18,8 @@ button,
 a {
   transition: color .2s ease, background-color .2s ease, border-color .2s ease, transform .2s ease;
 }
+
+.skip-link { position: fixed; top: -4rem; left: 1rem; z-index: 1200; padding: .7rem 1rem; border-radius: .5rem; background: #172033; color: #fff; font-weight: 600; text-decoration: none; }
+.skip-link:focus { top: 1rem; }
+:focus-visible { outline: 3px solid rgba(var(--bs-primary-rgb), .45); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; } }

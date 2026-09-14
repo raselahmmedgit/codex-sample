@@ -57,7 +57,7 @@ import { CommerceSummaryService } from '../core/services/commerce-summary.servic
       </nav>
     </header>
 
-    <main class="container app-content py-4 py-md-5">
+    <main id="main-content" class="container app-content py-4 py-md-5" tabindex="-1">
       <ng-content />
     </main>
 
