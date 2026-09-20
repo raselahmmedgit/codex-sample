@@ -12,6 +12,7 @@ export interface Product {
   description: string | null;
   price: number;
   status: string;
+  imageUrl?: string | null;
 }
 
 export interface PagedResult<T> {

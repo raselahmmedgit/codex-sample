@@ -13,7 +13,11 @@ import { ReviewFormComponent } from '../../reviews/review-form.component';
     @if (product(); as item) {
       <a class="back-link d-inline-block mb-4" routerLink="/products">← Back to products</a>
       <section class="row g-4 g-lg-5 align-items-start">
-        <div class="col-lg-6"><div class="detail-visual rounded-4"><span>{{ item.name.charAt(0) }}</span></div></div>
+        <div class="col-lg-6">
+          <div class="detail-visual rounded-4">
+            <img [src]="item.imageUrl || '/images/product-catalog.png'" [alt]="item.name" />
+          </div>
+        </div>
         <div class="col-lg-6">
           <span class="badge rounded-pill text-bg-light text-primary mb-3">{{ item.status }}</span>
           <h1 class="display-6 fw-bold">{{ item.name }}</h1>
@@ -31,9 +35,10 @@ import { ReviewFormComponent } from '../../reviews/review-form.component';
   `,
   styles: `
     .back-link { color: var(--bs-primary); font-weight: 600; text-decoration: none; }
-    .detail-visual { display: grid; min-height: 420px; place-items: center; background: linear-gradient(135deg, #e9efff, #f7f8fc); color: var(--bs-primary); font-size: 10rem; font-weight: 800; }
+    .detail-visual { min-height: 420px; overflow: hidden; background: #f7f8fc; }
+    .detail-visual img { width: 100%; height: 100%; min-height: 420px; object-fit: cover; object-position: center; }
     .price { color: #172033; font-size: 2rem; font-weight: 700; }
-    @media (max-width: 767.98px) { .detail-visual { min-height: 260px; font-size: 7rem; } }
+    @media (max-width: 767.98px) { .detail-visual, .detail-visual img { min-height: 260px; } }
   `
 })
 export class ProductDetailComponent {

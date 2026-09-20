@@ -9,7 +9,9 @@ import { Product } from '../catalog.models';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article class="product-card h-100 rounded-4 bg-white border overflow-hidden">
-      <div class="product-visual"><span>{{ product().name.charAt(0) }}</span></div>
+      <div class="product-visual">
+        <img [src]="product().imageUrl || '/images/product-catalog.png'" [alt]="product().name" />
+      </div>
       <div class="p-3 p-lg-4">
         <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
           <h2 class="h6 mb-0">{{ product().name }}</h2>
@@ -26,7 +28,8 @@ import { Product } from '../catalog.models';
   styles: `
     .product-card { transition: transform .2s ease, box-shadow .2s ease; }
     .product-card:hover { transform: translateY(-3px); box-shadow: 0 .75rem 1.5rem rgba(23, 32, 51, .08); }
-    .product-visual { display: grid; height: 170px; place-items: center; background: linear-gradient(135deg, #e9efff, #f7f8fc); color: var(--bs-primary); font-size: 4rem; font-weight: 800; }
+    .product-visual { height: 170px; overflow: hidden; background: #f7f8fc; }
+    .product-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
     .price { color: #172033; }
   `
 })
