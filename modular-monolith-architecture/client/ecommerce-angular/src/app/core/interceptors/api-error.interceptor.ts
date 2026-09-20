@@ -9,8 +9,8 @@ export const apiErrorInterceptor: HttpInterceptorFn = (request, next) => {
     const message = typeof error.error?.message === 'string'
       ? error.error.message
       : error.status === 0 ? 'Unable to connect to the API.' : 'Something went wrong. Please try again.';
-    const isCatalogRead = request.method === 'GET' && ['/api/products', '/api/categories', '/api/brands'].some(path => request.url.includes(path));
-    if (!isCatalogRead) uiState.setError(message);
+    const isDemoRead = request.method === 'GET' && ['/api/products', '/api/categories', '/api/brands', '/api/cart', '/api/wishlist', '/api/orders', '/api/customers/addresses'].some(path => request.url.includes(path));
+    if (!isDemoRead) uiState.setError(message);
     return throwError(() => error);
   }));
 };
