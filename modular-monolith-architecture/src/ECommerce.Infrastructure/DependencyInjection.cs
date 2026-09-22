@@ -48,7 +48,7 @@ public static class DependencyInjection
             if (databaseSettings.Provider.Equals("PostgreSql", StringComparison.OrdinalIgnoreCase)
                 || databaseSettings.Provider.Equals("Postgres", StringComparison.OrdinalIgnoreCase))
             {
-                options.UseNpgsql(connectionString);
+                options.UseNpgsql(connectionString, postgres => postgres.MigrationsAssembly("ECommerce.Infrastructure.PostgreSql.Migrations"));
                 return;
             }
 

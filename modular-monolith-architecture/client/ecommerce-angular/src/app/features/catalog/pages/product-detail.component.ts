@@ -2,7 +2,7 @@ import { CurrencyPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CatalogService } from '../catalog.service';
-import { Product } from '../catalog.models';
+import { Product, productStatusLabel } from '../catalog.models';
 import { ReviewFormComponent } from '../../reviews/review-form.component';
 
 @Component({
@@ -19,7 +19,7 @@ import { ReviewFormComponent } from '../../reviews/review-form.component';
           </div>
         </div>
         <div class="col-lg-6">
-          <span class="badge rounded-pill text-bg-light text-primary mb-3">{{ item.status }}</span>
+          <span class="badge rounded-pill text-bg-light text-primary mb-3">{{ statusLabel(item.status) }}</span>
           <h1 class="display-6 fw-bold">{{ item.name }}</h1>
           <p class="text-secondary mb-4">{{ item.description || 'Thoughtfully selected for everyday use.' }}</p>
           <div class="price mb-4">{{ item.price | currency }}</div>
@@ -46,6 +46,7 @@ export class ProductDetailComponent {
   private readonly catalog = inject(CatalogService);
   readonly product = signal<Product | null>(null);
   readonly errorMessage = signal('');
+  statusLabel = productStatusLabel;
 
   constructor() {
     const id = this.route.snapshot.paramMap.get('id');

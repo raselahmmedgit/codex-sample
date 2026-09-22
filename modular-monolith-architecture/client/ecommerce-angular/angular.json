@@ -89,7 +89,8 @@
               "buildTarget": "ecommerce-angular:build:production"
             },
             "development": {
-              "buildTarget": "ecommerce-angular:build:development"
+              "buildTarget": "ecommerce-angular:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

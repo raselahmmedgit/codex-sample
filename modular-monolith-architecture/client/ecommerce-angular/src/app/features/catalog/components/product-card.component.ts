@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { Product } from '../catalog.models';
+import { Product, productStatusLabel } from '../catalog.models';
 
 @Component({
   selector: 'app-product-card',
@@ -15,7 +15,7 @@ import { Product } from '../catalog.models';
       <div class="p-3 p-lg-4">
         <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
           <h2 class="h6 mb-0">{{ product().name }}</h2>
-          <span class="badge rounded-pill text-bg-light text-primary">{{ product().status }}</span>
+          <span class="badge rounded-pill text-bg-light text-primary">{{ statusLabel(product().status) }}</span>
         </div>
         <p class="small text-secondary mb-3">{{ product().description || 'Thoughtfully selected for everyday use.' }}</p>
         <div class="d-flex justify-content-between align-items-center">
@@ -35,4 +35,5 @@ import { Product } from '../catalog.models';
 })
 export class ProductCardComponent {
   readonly product = input.required<Product>();
+  statusLabel = productStatusLabel;
 }

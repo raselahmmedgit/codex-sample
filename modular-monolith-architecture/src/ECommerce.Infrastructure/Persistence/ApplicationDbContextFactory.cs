@@ -12,7 +12,7 @@ public sealed class ApplicationDbContextFactory : IDesignTimeDbContextFactory<Ap
         var provider = Environment.GetEnvironmentVariable("ECOMMERCE_DESIGN_PROVIDER") ?? "SqlServer";
         var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
         if (provider.Equals("PostgreSql", StringComparison.OrdinalIgnoreCase) || provider.Equals("Postgres", StringComparison.OrdinalIgnoreCase))
-            optionsBuilder.UseNpgsql(connectionString);
+            optionsBuilder.UseNpgsql(connectionString, postgres => postgres.MigrationsAssembly("ECommerce.Infrastructure.PostgreSql.Migrations"));
         else if (provider.Equals("MySql", StringComparison.OrdinalIgnoreCase))
             optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
         else if (provider.Equals("SqlServer", StringComparison.OrdinalIgnoreCase))

@@ -11,8 +11,19 @@ export interface Product {
   name: string;
   description: string | null;
   price: number;
-  status: string;
+  status: string | number;
   imageUrl?: string | null;
+}
+
+const productStatuses = ['Draft', 'Active', 'Inactive', 'Out of stock', 'Archived'];
+
+export function productStatusLabel(status: string | number): string {
+  if (typeof status === 'number' || /^\d+$/.test(status)) {
+    return productStatuses[Number(status)] ?? 'Unknown';
+  }
+
+  const normalized = status.replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase();
+  return productStatuses.find(label => label.toLowerCase() === normalized)?.toString() ?? status;
 }
 
 export interface PagedResult<T> {

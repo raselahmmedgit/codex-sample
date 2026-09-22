@@ -6,11 +6,10 @@ using Microsoft.Extensions.Options;
 namespace ECommerce.API.Middleware;
 
 public sealed class RequestPerformanceMiddleware(
-    RequestDelegate next,
     IAppLogger<RequestPerformanceMiddleware> logger,
-    IOptions<SerilogSettings> options)
+    IOptions<SerilogSettings> options) : IMiddleware
 {
-    public async Task InvokeAsync(HttpContext context)
+    public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
         var stopwatch = Stopwatch.StartNew();
         await next(context);

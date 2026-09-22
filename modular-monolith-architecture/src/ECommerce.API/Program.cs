@@ -29,6 +29,7 @@ builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ICorrelationIdAccessor, HttpCorrelationIdAccessor>();
+builder.Services.AddTransient<RequestPerformanceMiddleware>();
 builder.Services.AddControllers();
 var jwtSettings = builder.Configuration.GetSection(JwtSettings.SectionName).Get<JwtSettings>()
     ?? throw new InvalidOperationException("JWT configuration is missing.");

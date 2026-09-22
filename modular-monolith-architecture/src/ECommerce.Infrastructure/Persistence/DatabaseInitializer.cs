@@ -16,11 +16,13 @@ public static class DatabaseInitializer
         if (settings.SeedDevelopmentData && !isDevelopment)
             throw new InvalidOperationException("SeedDevelopmentData can only be enabled in the Development environment.");
 
-        var dbContext = services.GetRequiredService<ApplicationDbContext>();
+        await using var scope = services.CreateAsyncScope();
+        var scopedServices = scope.ServiceProvider;
+        var dbContext = scopedServices.GetRequiredService<ApplicationDbContext>();
         if (settings.ApplyMigrationsOnStartup) await dbContext.Database.MigrateAsync(cancellationToken);
         if (settings.SeedDevelopmentData)
         {
-            await SeedRolesAsync(services, cancellationToken);
+            await SeedRolesAsync(scopedServices, cancellationToken);
             await SeedDevelopmentDataAsync(dbContext, cancellationToken);
         }
     }
