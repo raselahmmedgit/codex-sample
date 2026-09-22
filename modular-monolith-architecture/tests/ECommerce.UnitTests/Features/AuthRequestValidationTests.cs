@@ -35,7 +35,17 @@ public sealed class AuthRequestValidationTests
     private static List<ValidationResult> Validate(object request)
     {
         var errors = new List<ValidationResult>();
-        Validator.TryValidateObject(request, new ValidationContext(request), errors, validateAllProperties: true);
+        var type = request.GetType();
+        foreach (var parameter in type.GetConstructors().Single().GetParameters())
+        {
+            var value = type.GetProperty(parameter.Name!, System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.IgnoreCase)!
+                .GetValue(request);
+            Validator.TryValidateValue(
+                value,
+                new ValidationContext(request) { MemberName = parameter.Name },
+                errors,
+                parameter.GetCustomAttributes(typeof(ValidationAttribute), inherit: true).Cast<ValidationAttribute>());
+        }
         return errors;
     }
 }
