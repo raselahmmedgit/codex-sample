@@ -45,6 +45,13 @@ public static class DependencyInjection
                 return;
             }
 
+            if (databaseSettings.Provider.Equals("PostgreSql", StringComparison.OrdinalIgnoreCase)
+                || databaseSettings.Provider.Equals("Postgres", StringComparison.OrdinalIgnoreCase))
+            {
+                options.UseNpgsql(connectionString);
+                return;
+            }
+
             if (!databaseSettings.Provider.Equals("SqlServer", StringComparison.OrdinalIgnoreCase))
                 throw new InvalidOperationException($"Unsupported database provider '{databaseSettings.Provider}'.");
 
