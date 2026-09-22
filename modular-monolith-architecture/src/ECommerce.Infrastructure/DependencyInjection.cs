@@ -33,6 +33,7 @@ public static class DependencyInjection
             options.Password.RequireNonAlphanumeric = false;
             options.Lockout.MaxFailedAccessAttempts = 5;
             options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
+            options.Lockout.AllowedForNewUsers = true;
             options.User.RequireUniqueEmail = true;
         })
         .AddRoles<ApplicationRole>()

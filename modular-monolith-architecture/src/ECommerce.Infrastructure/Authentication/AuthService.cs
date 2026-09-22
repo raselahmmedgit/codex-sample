@@ -17,6 +17,7 @@ namespace ECommerce.Infrastructure.Authentication;
 
 public sealed class AuthService(
     UserManager<ApplicationUser> userManager,
+    RoleManager<ApplicationRole> roleManager,
     ApplicationDbContext dbContext,
     IOptions<JwtSettings> jwtOptions) : IAuthService
 {
@@ -27,7 +28,25 @@ public sealed class AuthService(
         var user = new ApplicationUser(request.Email) { DisplayName = request.DisplayName?.Trim() };
         var result = await userManager.CreateAsync(user, request.Password);
         if (!result.Succeeded) return Result<AuthResponse>.Failure("Registration failed.", result.Errors.Select(x => x.Description).ToArray());
-        await userManager.AddToRoleAsync(user, "Customer");
+
+        const string customerRole = "Customer";
+        if (!await roleManager.RoleExistsAsync(customerRole))
+        {
+            var roleResult = await roleManager.CreateAsync(new ApplicationRole(customerRole));
+            if (!roleResult.Succeeded && !await roleManager.RoleExistsAsync(customerRole))
+            {
+                await userManager.DeleteAsync(user);
+                return Result<AuthResponse>.Failure("Registration failed.", roleResult.Errors.Select(x => x.Description).ToArray());
+            }
+        }
+
+        var assignmentResult = await userManager.AddToRoleAsync(user, customerRole);
+        if (!assignmentResult.Succeeded)
+        {
+            await userManager.DeleteAsync(user);
+            return Result<AuthResponse>.Failure("Registration failed.", assignmentResult.Errors.Select(x => x.Description).ToArray());
+        }
+
         return Result<AuthResponse>.Success(await IssueTokensAsync(user, cancellationToken), "Registration successful.");
     }
 
