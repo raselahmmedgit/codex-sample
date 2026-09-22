@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, finalize, map, tap } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, catchError, finalize, map, tap, throwError } from 'rxjs';
 import { ApiResult, AuthResponse, CurrentUser, LoginRequest, RegisterRequest } from '../models/auth.models';
 
 @Injectable({ providedIn: 'root' })
@@ -12,11 +12,19 @@ export class AuthService {
   constructor(private readonly http: HttpClient) {}
 
   login(request: LoginRequest): Observable<AuthResponse> {
-    return this.http.post<ApiResult<AuthResponse>>('/api/auth/login', request).pipe(map(result => this.unwrap(result)), tap(response => this.store(response)));
+    return this.http.post<ApiResult<AuthResponse>>('/api/auth/login', request).pipe(
+      map(result => this.unwrap(result)),
+      tap(response => this.store(response)),
+      catchError(error => throwError(() => new Error(this.getErrorMessage(error))))
+    );
   }
 
   register(request: RegisterRequest): Observable<AuthResponse> {
-    return this.http.post<ApiResult<AuthResponse>>('/api/auth/register', request).pipe(map(result => this.unwrap(result)), tap(response => this.store(response)));
+    return this.http.post<ApiResult<AuthResponse>>('/api/auth/register', request).pipe(
+      map(result => this.unwrap(result)),
+      tap(response => this.store(response)),
+      catchError(error => throwError(() => new Error(this.getErrorMessage(error))))
+    );
   }
 
   refresh(): Observable<AuthResponse> {
@@ -62,5 +70,11 @@ export class AuthService {
   private unwrap(result: ApiResult<AuthResponse>): AuthResponse {
     if (!result.succeeded || !result.data) throw new Error(result.errors?.join(', ') || result.message || 'Authentication failed.');
     return result.data;
+  }
+
+  private getErrorMessage(error: unknown): string {
+    if (!(error instanceof HttpErrorResponse)) return error instanceof Error ? error.message : 'Authentication failed.';
+    const response = error.error as Partial<ApiResult<unknown>> | null;
+    return response?.errors?.join(', ') || response?.message || 'Authentication failed. Please try again.';
   }
 }

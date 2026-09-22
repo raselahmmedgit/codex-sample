@@ -24,8 +24,8 @@ import { AuthService } from '../../../core/services/auth.service';
           </div>
           <div class="mb-4">
             <label class="form-label" for="password">Password</label>
-            <input id="password" class="form-control" type="password" formControlName="password" autocomplete="current-password" />
-            @if (form.controls.password.touched && form.controls.password.invalid) { <div class="form-error mt-1">Password is required.</div> }
+            <input id="password" class="form-control" type="password" formControlName="password" autocomplete="current-password" maxlength="128" />
+            @if (form.controls.password.touched && form.controls.password.invalid) { <div class="form-error mt-1">Enter a password with at least 8 characters.</div> }
           </div>
           <button class="btn btn-primary w-100 py-2" type="submit" [disabled]="form.invalid || submitting">
             {{ submitting ? 'Signing in…' : 'Sign in' }}
@@ -41,7 +41,10 @@ export class LoginComponent {
   private readonly fb = inject(FormBuilder);
   private readonly auth = inject(AuthService);
   private readonly router = inject(Router);
-  readonly form = this.fb.nonNullable.group({ email: ['', [Validators.required, Validators.email]], password: ['', Validators.required] });
+  readonly form = this.fb.nonNullable.group({
+    email: ['', [Validators.required, Validators.email, Validators.maxLength(256)]],
+    password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(128)]]
+  });
   submitting = false;
   errorMessage = '';
 

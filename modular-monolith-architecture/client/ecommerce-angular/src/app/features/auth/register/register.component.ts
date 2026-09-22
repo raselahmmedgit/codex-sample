@@ -25,18 +25,18 @@ function matchingPasswords(control: AbstractControl): ValidationErrors | null {
         <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
           <div class="mb-3">
             <label class="form-label" for="displayName">Full name</label>
-            <input id="displayName" class="form-control" type="text" formControlName="displayName" autocomplete="name" />
+            <input id="displayName" class="form-control" type="text" formControlName="displayName" autocomplete="name" maxlength="100" />
             @if (form.controls.displayName.touched && form.controls.displayName.invalid) { <div class="form-error mt-1">Name is required.</div> }
           </div>
           <div class="mb-3">
             <label class="form-label" for="email">Email address</label>
-            <input id="email" class="form-control" type="email" formControlName="email" autocomplete="email" />
+            <input id="email" class="form-control" type="email" formControlName="email" autocomplete="email" maxlength="256" />
             @if (form.controls.email.touched && form.controls.email.invalid) { <div class="form-error mt-1">Enter a valid email address.</div> }
           </div>
           <div class="mb-3">
             <label class="form-label" for="password">Password</label>
-            <input id="password" class="form-control" type="password" formControlName="password" autocomplete="new-password" />
-            @if (form.controls.password.touched && form.controls.password.invalid) { <div class="form-error mt-1">Use at least 8 characters.</div> }
+            <input id="password" class="form-control" type="password" formControlName="password" autocomplete="new-password" maxlength="128" />
+            @if (form.controls.password.touched && form.controls.password.invalid) { <div class="form-error mt-1">Use 8–128 characters with an uppercase letter, a lowercase letter, and a number.</div> }
           </div>
           <div class="mb-4">
             <label class="form-label" for="confirmPassword">Confirm password</label>
@@ -58,9 +58,9 @@ export class RegisterComponent {
   private readonly auth = inject(AuthService);
   private readonly router = inject(Router);
   readonly form = this.fb.nonNullable.group({
-    displayName: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(8)]],
+    displayName: ['', [Validators.required, Validators.maxLength(100)]],
+    email: ['', [Validators.required, Validators.email, Validators.maxLength(256)]],
+    password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(128), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/)]],
     confirmPassword: ['', Validators.required]
   }, { validators: matchingPasswords });
   submitting = false;
