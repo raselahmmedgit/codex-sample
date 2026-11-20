@@ -1,6 +1,6 @@
 # Codex Chat History Index
 
-এই index-এ 2026-11-20 তারিখে local Codex history API-তে পাওয়া ২১টি active/non-archived Codex chat-এর title, project এবং summary রাখা হয়েছে। Archived Codex chat এবং ChatGPT chat পাওয়া যায়নি। এটি concise history index; raw turn-by-turn transcript নয়।
+এই index-এ 2026-11-20 তারিখে local Codex history API-তে পাওয়া ২১টি active/non-archived Codex chat-এর title, project এবং summary রাখা হয়েছে। Archived Codex chat এবং ChatGPT chat পাওয়া যায়নি। এটি concise history index; raw turn-by-turn transcript নয়। Multi-laptop update হিসেবে local Codex history-এর সীমা, Cloud Work এবং context rehydration workflow-ও এখানে উল্লেখ করা হয়েছে।
 
 ## Current chat
 
@@ -51,3 +51,27 @@ Continue from the recorded summary, then verify the current repository before ch
 ```
 
 প্রতিটি পুরোনো chat-এর full internal transcript এই folder-এ export করা হয়নি। তাই title/summary দিয়ে context restore করার পর current source, Git status এবং requirements পুনরায় verify করা আবশ্যক।
+
+## Multi-laptop chat rules
+
+- Local Codex chat-এর history ও local task context প্রতিটি laptop-এ সম্পূর্ণভাবে mirror হয় না। এই index হলো portable reference, internal database backup নয়।
+- একই conversation বহু device-এ চালিয়ে যেতে হলে Cloud Work conversation ব্যবহার করুন, যদি আপনার account/workspace-এ তা available থাকে।
+- Local repository-ভিত্তিক কাজের জন্য প্রতিটি laptop-এ repository open/register করে এই index থেকে target chat context rehydrate করুন।
+- কোনো running local task অন্য laptop থেকে দেখতে বা control করতে হলে task যে host-এ চলছে সেটি online রাখুন এবং available Remote access ব্যবহার করুন।
+- Cross-device cloud coding দরকার হলে Codex Cloud environment ব্যবহার করুন; local files-এর জন্য প্রত্যেক laptop-এর checkout, permission এবং dependency আলাদা করে যাচাই করুন।
+
+## Standard context-restore prompt
+
+```text
+Read the synced Codex context files:
+- codex laptop file back-up/laptop-off/read-me.txt
+- codex laptop file back-up/laptop-off/PROJECT_INVENTORY.md
+- codex laptop file back-up/laptop-off/CHAT_HISTORY_INDEX.md
+- codex laptop file back-up/laptop-off/WORKSPACE_SNAPSHOT.md
+
+Target project: <project name and local path>
+Target previous chat: <chat title>
+
+Continue from the recorded summary, then verify the current repository, Git status,
+configuration and requirements before making any change.
+```

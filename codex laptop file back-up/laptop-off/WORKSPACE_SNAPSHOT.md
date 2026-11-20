@@ -1,6 +1,7 @@
 # `codex-sample` Workspace Snapshot
 
 Snapshot date: 2026-11-20, Asia/Dhaka
+Update purpose: multi-laptop Codex desktop workflow and portable project context
 
 ## Git state
 
@@ -43,4 +44,42 @@ Snapshot date: 2026-11-20, Asia/Dhaka
 
 ## Backup boundary
 
-এই snapshot source code-এর পূর্ণ mirror নয়; এটি project/context specification। সম্পূর্ণ code sync করার জন্য Git remote, approved cloud storage বা repository clone ব্যবহার করুন।
+এই snapshot source code-এর পূর্ণ mirror নয়; এটি project/context specification। সম্পূর্ণ code sync করার জন্য Git remote, approved cloud storage বা repository clone ব্যবহার করুন। Codex desktop-এর local chat database, local settings, plugin credentials বা running task state এই snapshot-এর অংশ নয়।
+
+## Multi-laptop operating model
+
+### Laptop setup
+
+প্রতিটি laptop-এ একই Git repository clone করে Codex desktop app-এ local project হিসেবে register করুন। Repository path laptopভেদে আলাদা হলে `PROJECT_INVENTORY.md`-এর source path-কে reference হিসেবে ব্যবহার করুন; path hard-code করে ধরে নেবেন না।
+
+### Daily sync sequence
+
+```powershell
+git pull origin main
+git status
+# Work in Codex after confirming the correct branch and repository.
+git add <focused-files>
+git commit -m "Describe the completed change"
+git push origin main
+```
+
+উপরের commands-এর `<focused-files>` placeholder বাস্তব file path দিয়ে replace করতে হবে। একই কাজ দুই laptop-এ parallel হলে আলাদা branch ব্যবহার করে পরে merge/review করুন।
+
+### Context sync sequence
+
+1. `laptop-off` folder-এর latest version pull করুন।
+2. `CHAT_HISTORY_INDEX.md` থেকে target chat title নির্বাচন করুন।
+3. `WORKSPACE_SNAPSHOT.md` এবং `PROJECT_INVENTORY.md` পড়ুন।
+4. Codex-কে current Git status, source এবং configuration verify করতে বলুন।
+5. Historical summary-কে guidance হিসেবে নিন; current repository-কে final authority হিসেবে যাচাই করুন।
+
+### Cloud versus local
+
+- Cloud Work conversation cross-device continuation-এর জন্য উপযোগী।
+- Local Codex chat-এর history এবং task context host-specific হতে পারে।
+- Codex Cloud coding task cloud environment-এ চালালে laptop পরিবর্তন করেও task continue করা যায়।
+- Local task-এর ক্ষেত্রে task-running host online, accessible এবং প্রয়োজনীয় files/permissions সহ available থাকতে হবে।
+
+## Security boundary
+
+এই snapshot-এ secret values রাখা যাবে না। প্রতিটি laptop-এ JWT secret, database password, API key, certificate এবং external service credential secure secret store বা environment configuration দিয়ে সেট করতে হবে।

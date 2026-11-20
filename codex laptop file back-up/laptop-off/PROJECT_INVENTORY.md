@@ -1,6 +1,6 @@
 # Codex Project Inventory
 
-এই তালিকাটি 2026-11-20 তারিখে local Codex project registry থেকে তৈরি। `projectId`-গুলো Codex-এর internal identifier; অন্য laptop-এ এগুলো অপরিবর্তিত নাও থাকতে পারে।
+এই তালিকাটি 2026-11-20 তারিখে local Codex project registry থেকে তৈরি এবং multi-laptop use-এর জন্য update করা হয়েছে। `projectId`-গুলো Codex-এর internal identifier; অন্য laptop-এ এগুলো অপরিবর্তিত নাও থাকতে পারে। অন্য laptop-এ repository path এবং project registration পুনরায় যাচাই করতে হবে।
 
 | Project label | Source path | Git repository | প্রধান context |
 |---|---|---:|---|
@@ -37,3 +37,30 @@
 - `.env`, JWT secret, database password এবং production credential backup-এ রাখা হয়নি।
 - Build/test চালাতে `.NET SDK 9.x`, Node.js 22.x এবং প্রয়োজনীয় database/Docker runtime লাগতে পারে।
 - অন্য laptop-এ প্রথমে repository clone/sync করে তারপর Codex project হিসেবে register করুন।
+
+## Multi-laptop sync policy
+
+এই inventory নিজে Codex desktop app-এর internal database sync করে না। Recommended ownership হলো:
+
+| Data | Source of truth | অন্য laptop-এ করণীয় |
+|---|---|---|
+| Source code, migrations, tests | Git remote | `clone` বা `pull` করে current branch checkout করুন |
+| এই project/chat specification | এই `laptop-off` folder, preferably Git-tracked | `pull` করে Markdown ও JSON পড়ুন |
+| Cloud Work conversation | ChatGPT account-এর Cloud Work | একই account দিয়ে sign in করে conversation open করুন |
+| Local Codex task | যে laptop/host-এ task চলছে | সেই host-এ কাজ চালান বা Remote access ব্যবহার করুন |
+| Codex Cloud task | Codex Cloud environment | Cloud environment থেকে continue করুন |
+| Secrets and credentials | Secret Manager বা secure local store | প্রতিটি laptop-এ আলাদাভাবে configure করুন |
+
+## New laptop onboarding checklist
+
+1. Required repository clone করুন এবং `git status` দিয়ে branch/worktree যাচাই করুন।
+2. `codex laptop file back-up/laptop-off/` folder update করুন।
+3. `CODEX_SYNC_MANIFEST.json`, `CHAT_HISTORY_INDEX.md` এবং `WORKSPACE_SNAPSHOT.md` পড়ুন।
+4. Codex desktop app-এ local repository project হিসেবে register করুন।
+5. Environment variables, SDK, Node.js, database এবং Docker dependency আলাদাভাবে configure করুন।
+6. Secret file copy না করে secure secret store থেকে values দিন।
+7. নতুন chat-এ target project এবং target chat title উল্লেখ করে context restore করুন।
+
+## Conflict rule
+
+দুই laptop-এ একই file একসঙ্গে edit করবেন না। কাজ শুরুর আগে `git pull`, কাজ শেষে focused commit ও `git push` করুন। Backup specification-এ conflict হলে latest verified source code এবং Git history-কে authority হিসেবে ধরে manual merge করুন।

@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0",
   "backupType": "codex-project-and-chat-history-spec",
-  "generatedAt": "2026-11-20T22:00:00+06:00",
+  "generatedAt": "2026-11-20T23:05:00+06:00",
   "timezone": "Asia/Dhaka",
   "sourceHost": "local",
   "sourceWorkspace": "C:\\Users\\rasel.ahmmed\\Documents\\GitHub\\codex-sample",
@@ -19,11 +19,22 @@
     "archivedChatsIncluded": false,
     "chatgptChatsFound": 0,
     "rawChatTranscriptsIncluded": false,
-    "secretsIncluded": false
+    "secretsIncluded": false,
+    "localCodexDatabaseIncluded": false,
+    "liveMultiLaptopSync": false
+  },
+  "recommendedSyncArchitecture": {
+    "sourceCode": "GitHub/GitLab/Bitbucket or another approved Git remote",
+    "projectSpecifications": "Commit this laptop-off folder to the project repository or sync it through approved cloud storage",
+    "cloudConversations": "Use Cloud Work for conversations that must continue across web, mobile and desktop",
+    "codingTasks": "Use Codex Cloud for cross-device cloud coding tasks, or Remote access to the host where a local task is running",
+    "secrets": "Configure per laptop through a secret manager or secure local credential store"
   },
   "syncNotes": [
     "This is a portable specification/index, not a copy of Codex internal storage.",
     "Project paths are preserved as source references and may need remapping on another laptop.",
-    "Use the chat title, project path and summary to rehydrate context in a new Codex chat."
+    "Use the chat title, project path and summary to rehydrate context in a new Codex chat.",
+    "Local Codex chats and local task state are not automatically copied to every laptop.",
+    "Do not place passwords, API keys, tokens, certificates or production connection strings in this manifest."
   ]
 }
