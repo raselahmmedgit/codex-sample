@@ -13,7 +13,7 @@
 | Title | Project/path | Summary |
 |---|---|---|
 | সব Excel শিট পর্যালোচনা করুন | `waltz-fashions-ltd-project` | old-ERP ও Google Sheet-এর সব Excel শিট বাংলায় বিস্তারিত review |
-| All Microservice Details | `D:\GitLabCore` | microservice projects, source folder, architecture এবং feature development বোঝা |
+| All Microservice Details | `D:\GitLabCore` / [raselahmmedgit/bbl-sample](https://github.com/raselahmmedgit/bbl-sample) | microservice projects, source folder, architecture এবং feature development বোঝা |
 | Understand the full project | `bracBankOneAppProject_Study` | OneApp project structure ও components exploration |
 | Understand the full project | `bracBankOneAppCoreProject_Study` | OneApp Core structure ও main components review |
 | Explain Postman step by step | `bracBankOneApp_Docs` | Postman ব্যবহারের step-by-step guide |
@@ -37,6 +37,7 @@
 - BayGroup seeded password external secret থেকে আসে; plaintext password এই backup-এ রাখা যাবে না।
 - OneApp/Figma summaries-এর কিছু field-level detail canvas scale বা unavailable board-এর কারণে inferred; exact BRD/SRS দিয়ে confirm করতে হবে।
 - GitLabCore capture review-তে `ApplicationStartDate` UTC হিসেবে observed হয়েছিল; `AccountOpenDate`/`EmiDate` capture এবং EMI timing-এর সিদ্ধান্ত recheck করা দরকার।
+- GitLabCore/OneApp canonical repository reference: [raselahmmedgit/bbl-sample](https://github.com/raselahmmedgit/bbl-sample)। Local path `D:\GitLabCore` laptopভেদে পরিবর্তিত হতে পারে।
 - Postman, OneApp architecture এবং technology overview-এর বাংলা learning context retained in prior work summaries, কিন্তু raw transcript নয়।
 
 ## Rehydrating a chat on another laptop

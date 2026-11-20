@@ -6,7 +6,7 @@
 |---|---|---:|---|
 | `codex-sample` | `C:\Users\rasel.ahmmed\Documents\GitHub\codex-sample` | Yes | Codex sample, modular monolith demo, laptop backup |
 | `waltzFashionsLtd_Project` | `C:\Users\rasel.ahmmed\Documents\GitHub\waltz-fashions-ltd-project` | Yes | ERP/Excel sheet review |
-| `bracBanlOneApp_GitLabCore` | `D:\GitLabCore` | Yes | BRAC Bank OneApp microservices |
+| `bracBanlOneApp_GitLabCore` | `D:\GitLabCore` | Yes | [raselahmmedgit/bbl-sample](https://github.com/raselahmmedgit/bbl-sample) — BRAC Bank OneApp microservices |
 | `bracBanlOneApp_Figma` | `C:\Users\rasel.ahmmed\Documents\GitHub\bbl-sample\bracBanlOneApp_Figma` | Yes | Figma journey and process-flow review |
 | `bracBankOneApp_Docs` | `C:\Users\rasel.ahmmed\Documents\GitHub\bbl-sample\bracBankOneApp_Docs` | Yes | OneApp documentation and Postman learning |
 | `bracBankOneAppProject_Study` | `C:\Users\rasel.ahmmed\Documents\GitHub\bbl-sample\bracBankOneAppProject_Study` | Yes | OneApp project study |
@@ -14,6 +14,8 @@
 | `bay-cps` | `C:\Users\rasel.ahmmed\Documents\GitHub\outsourcing-baygroup-project` | Yes | BayGroup CPS procurement system |
 
 ## Repository snapshot: `codex-sample`
+
+Canonical repository reference for the OneApp GitLabCore project: [raselahmmedgit/bbl-sample](https://github.com/raselahmmedgit/bbl-sample)
 
 বর্তমান repository-তে প্রধানত আছে:
 

@@ -3,6 +3,8 @@
 Snapshot date: 2026-11-20, Asia/Dhaka
 Update purpose: multi-laptop Codex desktop workflow and portable project context
 
+OneApp GitLabCore repository reference: [raselahmmedgit/bbl-sample](https://github.com/raselahmmedgit/bbl-sample)
+
 ## Git state
 
 - Repository: `C:\Users\rasel.ahmmed\Documents\GitHub\codex-sample`
@@ -50,7 +52,7 @@ Update purpose: multi-laptop Codex desktop workflow and portable project context
 
 ### Laptop setup
 
-প্রতিটি laptop-এ একই Git repository clone করে Codex desktop app-এ local project হিসেবে register করুন। Repository path laptopভেদে আলাদা হলে `PROJECT_INVENTORY.md`-এর source path-কে reference হিসেবে ব্যবহার করুন; path hard-code করে ধরে নেবেন না।
+প্রতিটি laptop-এ [raselahmmedgit/bbl-sample](https://github.com/raselahmmedgit/bbl-sample) repository clone করে Codex desktop app-এ local project হিসেবে register করুন। Repository path laptopভেদে আলাদা হলে `PROJECT_INVENTORY.md`-এর source path-কে reference হিসেবে ব্যবহার করুন; path hard-code করে ধরে নেবেন না।
 
 ### Daily sync sequence
 

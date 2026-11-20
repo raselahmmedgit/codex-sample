@@ -1,11 +1,15 @@
 {
   "schemaVersion": "1.0",
   "backupType": "codex-project-and-chat-history-spec",
-  "generatedAt": "2026-11-20T23:05:00+06:00",
+  "generatedAt": "2026-11-20T23:45:00+06:00",
   "timezone": "Asia/Dhaka",
   "sourceHost": "local",
   "sourceWorkspace": "C:\\Users\\rasel.ahmmed\\Documents\\GitHub\\codex-sample",
   "backupFolder": "codex laptop file back-up\\laptop-off",
+  "repositoryReferences": {
+    "bracBankOneApp_GitLabCore": "https://github.com/raselahmmedgit/bbl-sample",
+    "codexSample": "https://github.com/raselahmmedgit/codex-sample"
+  },
   "files": [
     "read-me.txt",
     "CODEX_SYNC_MANIFEST.json",
