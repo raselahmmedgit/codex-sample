@@ -1,0 +1,39 @@
+CODEX LAPTOP-OFF SYNC BACKUP
+============================
+
+এই folder-এ Codex project inventory, chat-history index এবং sync নির্দেশনা রাখা আছে।
+
+ফাইলসমূহ
+---------
+- CODEX_SYNC_MANIFEST.json       : machine-independent backup metadata
+- PROJECT_INVENTORY.md           : Codex-এ নিবন্ধিত local projects-এর তালিকা
+- CHAT_HISTORY_INDEX.md          : Codex chat/task history-এর index ও summary
+- WORKSPACE_SNAPSHOT.md          : এই codex-sample repository-এর বর্তমান snapshot
+
+ব্যবহারের নিয়ম
+--------------
+1. পুরো `laptop-off` folder-টি অন্য laptop-এ একইভাবে copy বা cloud sync করুন।
+2. অন্য laptop-এ Codex খুলে সংশ্লিষ্ট repository/project path local হিসেবে register করুন।
+3. এই Markdown files reference হিসেবে ব্যবহার করুন; এগুলো Codex-এর internal chat database-এর বিকল্প নয়।
+4. Internal Codex chat history স্বয়ংক্রিয়ভাবে এই folder-এ export হয় না। তাই chat পুনরায় চালাতে হলে CHAT_HISTORY_INDEX.md-এর title, project path এবং summary ব্যবহার করে নতুন chat-এ context দিন।
+5. প্রতি sync-এর আগে নতুন project/chat যোগ হলে manifest-এর `generatedAt` এবং সংশ্লিষ্ট index update করুন।
+
+নিরাপত্তা
+---------
+- কোনো password, API key, token, private certificate বা production connection string এই backup-এ রাখা হয়নি।
+- `.env`, secret manager value এবং user credential আলাদাভাবে নিরাপদে রাখুন।
+- Git history-তে secret accidentally commit হয়েছে কি না আলাদাভাবে scan করুন।
+
+Backup scope
+------------
+- Snapshot date: 2026-11-20 (Asia/Dhaka)
+- Source workspace: C:\Users\rasel.ahmmed\Documents\GitHub\codex-sample
+- Source Codex host: local
+- এই backup বর্তমান Codex inventory এবং workspace evidence-এর উপর ভিত্তি করে তৈরি।
+
+গুরুত্বপূর্ণ sync সীমাবদ্ধতা
+---------------------------
+- এই folder হলো manual context/spec sync; এটি Codex desktop-এর internal chat database, local settings, credentials বা running session দুই laptop-এ automatically sync করে না।
+- একই folder cloud drive/Git দিয়ে দুই laptop-এ copy করলে অন্য laptop-এ files পাওয়া যাবে, কিন্তু Codex-এ project path এবং chat context পুনরায় select/read করতে হবে।
+- Source code-এর জন্য Git remote বা approved cloud repository ব্যবহার করুন। একই file দুই laptop-এ একসঙ্গে edit করলে আগে pull/sync করে conflict resolve করুন।
+- অন্য laptop-এ নতুন chat খুলে `CHAT_HISTORY_INDEX.md`-এর title ও summary উল্লেখ করে context restore করুন।

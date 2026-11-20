@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0",
+  "backupType": "codex-project-and-chat-history-spec",
+  "generatedAt": "2026-11-20T22:00:00+06:00",
+  "timezone": "Asia/Dhaka",
+  "sourceHost": "local",
+  "sourceWorkspace": "C:\\Users\\rasel.ahmmed\\Documents\\GitHub\\codex-sample",
+  "backupFolder": "codex laptop file back-up\\laptop-off",
+  "files": [
+    "read-me.txt",
+    "CODEX_SYNC_MANIFEST.json",
+    "PROJECT_INVENTORY.md",
+    "CHAT_HISTORY_INDEX.md",
+    "WORKSPACE_SNAPSHOT.md"
+  ],
+  "coverage": {
+    "codexProjects": 8,
+    "codexChats": 21,
+    "archivedChatsIncluded": false,
+    "chatgptChatsFound": 0,
+    "rawChatTranscriptsIncluded": false,
+    "secretsIncluded": false
+  },
+  "syncNotes": [
+    "This is a portable specification/index, not a copy of Codex internal storage.",
+    "Project paths are preserved as source references and may need remapping on another laptop.",
+    "Use the chat title, project path and summary to rehydrate context in a new Codex chat."
+  ]
+}

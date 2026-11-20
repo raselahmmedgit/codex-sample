@@ -1,0 +1,130 @@
+model = "gpt-5.6-luna"
+model_reasoning_effort = "medium"
+notify = [ "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1117.3838.0_x64__2p2nqsd0c76g0\\app\\resources\\cua_node\\bin\\node_modules\\@oai\\sky\\bin\\windows\\codex-computer-use.exe", "turn-ended" ]
+sandbox_mode = "danger-full-access"
+model_verbosity = "medium"
+[desktop]
+followUpQueueMode = "steer"
+conversationDetailMode = "STEPS_COMMANDS"
+ambient-suggestions-enabled = true
+external-agent-import-sync-enabled = true
+projectlessWorkspaceRoot = 'C:\Users\rasel.ahmmed\Documents\GitHub\codex-sample'
+sansFontSize = 16
+pagesFontSize = 14
+codeFontSize = 14
+
+[desktop.appearanceLightChromeTheme]
+accent = "#3a83f7"
+accentSource = "chatgpt"
+contrast = 50
+ink = "#1a1c1f"
+opaqueWindows = false
+surface = "#ffffff"
+
+[desktop.appearanceLightChromeTheme.fonts]
+
+[desktop.appearanceLightChromeTheme.semanticColors]
+diffAdded = "#00a240"
+diffRemoved = "#ba2623"
+skill = "#924ff7"
+
+[marketplaces.openai-primary-runtime]
+source_type = "local"
+source = '\\?\C:\Users\rasel.ahmmed\.cache\codex-runtimes\codex-primary-runtime\plugins\openai-primary-runtime'
+
+[marketplaces.openai-bundled]
+source_type = "local"
+source = '\\?\C:\Users\rasel.ahmmed\.codex\.tmp\bundled-marketplaces\openai-bundled'
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."template-creator@openai-primary-runtime"]
+enabled = true
+
+[plugins."codex-app-tools@openai-bundled"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[plugins."unified-computer-use@openai-bundled"]
+enabled = true
+
+[plugins."visualize@openai-bundled"]
+enabled = true
+
+[plugins."computer-use@openai-bundled"]
+enabled = true
+
+[mcp_servers.node_repl]
+args = []
+command = 'C:\Program Files\WindowsApps\OpenAI.Codex_26.1117.3838.0_x64__2p2nqsd0c76g0\app\resources\cua_node\bin\node_repl.exe'
+env_vars = ["BROWSER_USE_ACCESS_EXECUTOR_ID", "BROWSER_USE_ACCESS_PIPE_PATH", "BROWSER_USE_ACCESS_VERIFYING_IDENTITY", "CODEX_WINDOWS_REGISTERED_CORE"]
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = 'C:\Program Files\WindowsApps\OpenAI.Codex_26.1117.3838.0_x64__2p2nqsd0c76g0\app\resources\cua_node\bin\node_modules'
+NODE_REPL_NODE_PATH = 'C:\Program Files\WindowsApps\OpenAI.Codex_26.1117.3838.0_x64__2p2nqsd0c76g0\app\resources\cua_node\bin\node.exe'
+NODE_REPL_TRUSTED_CODE_PATHS = 'C:\Users\rasel.ahmmed\.codex;C:\Program Files\WindowsApps\OpenAI.Codex_26.1117.3838.0_x64__2p2nqsd0c76g0\app\resources\cua_node\bin\node_modules'
+CODEX_HOME = 'C:\Users\rasel.ahmmed\.codex'
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab,mcpapps"
+BROWSER_USE_TINYSKY_ENABLED = "1"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = ""
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = ""
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.1117.31558"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"C:/Users/rasel.ahmmed/.codex/plugins/cache/openai-bundled/browser/26.1117.31558/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
+SKY_CUA_NATIVE_PIPE = "1"
+SKY_CUA_NATIVE_PIPE_DIRECTORY = '\\.\pipe\codex-computer-use-23411f6e-06e2-41b5-9bdf-c410be6a2475'
+CODEX_CLI_PATH = 'C:\Program Files\WindowsApps\OpenAI.Codex_26.1117.3838.0_x64__2p2nqsd0c76g0\app\resources\codex.exe'
+NODE_REPL_UNTRUSTED_ENV_ALLOWLIST = "CODEX_WINDOWS_REGISTERED_CORE"
+NODE_REPL_LAZY_TRUSTED_WORKER = "0"
+NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = ""
+
+[windows]
+sandbox = "elevated"
+
+[features]
+memories = true
+
+[memories]
+generate_memories = true
+use_memories = true
+
+[projects.'c:\users\rasel.ahmmed\documents\github\outsourcing-baygroup-project']
+trust_level = "trusted"
+
+[projects.'C:\Users\rasel.ahmmed\Documents\GitHub\outsourcing-baygroup-project']
+trust_level = "trusted"
+
+[projects.'C:\Users\rasel.ahmmed\Documents\GitHub\bbl-sample\bracBankOneAppCoreProject_Study']
+trust_level = "trusted"
+
+[projects.'C:\Users\rasel.ahmmed\Documents\GitHub\bbl-sample\bracBankOneAppProject_Study']
+trust_level = "trusted"
+
+[projects.'C:\Users\rasel.ahmmed\Documents\GitHub\bbl-sample\bracBankOneApp_Docs']
+trust_level = "trusted"
+
+[projects.'C:\Users\rasel.ahmmed\Documents\GitHub\bbl-sample\bracBanlOneApp_Figma']
+trust_level = "trusted"
+
+[projects.'C:\Users\rasel.ahmmed\Documents\GitHub\codex-sample']
+trust_level = "trusted"
+
+[projects.'D:\GitLabCore']
+trust_level = "trusted"
+
+[projects.'C:\Users\rasel.ahmmed\Documents\GitHub\waltz-fashions-ltd-project']
+trust_level = "trusted"
