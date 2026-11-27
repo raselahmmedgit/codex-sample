@@ -94,9 +94,34 @@ skill = "#924ff7"
 [projects.'C:\Users\User\Documents\GitHub\outsourcing-baygroup-project']
 trust_level = "trusted"
 
+
 [features]
 memories = true
 
 [memories]
 generate_memories = true
 use_memories = true
+
+[projects.'c:\Users\User\Documents\GitHub\outsourcing-baygroup-project']
+trust_level = "trusted"
+
+[projects.'C:\Users\User\Documents\GitHub\outsourcing-baygroup-project']
+trust_level = "trusted"
+
+[projects.'C:\Users\User\Documents\GitHub\bbl-sample\bracBankOneAppCoreProject_Study']
+trust_level = "trusted"
+
+[projects.'C:\Users\User\Documents\GitHub\bbl-sample\bracBankOneAppProject_Study']
+trust_level = "trusted"
+
+[projects.'C:\Users\User\Documents\GitHub\bbl-sample\bracBankOneApp_Docs']
+trust_level = "trusted"
+
+[projects.'C:\Users\User\Documents\GitHub\bbl-sample\bracBanlOneApp_Figma']
+trust_level = "trusted"
+
+[projects.'C:\Users\User\Documents\GitHub\codex-sample']
+trust_level = "trusted"
+
+[projects.'C:\Users\user\Documents\GitHub\waltz-fashions-ltd-project']
+trust_level = "trusted"
